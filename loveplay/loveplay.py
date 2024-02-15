@@ -133,12 +133,10 @@ class Loveplay(commands.Cog):
         await ctx.send(embed=e)
         
     @commands.command(name="neko")
-    @commands.is_nsfw()
     async def lpneko(self, ctx, *, user):
         """Send a neko"""
         desc = "neko"
-        req = requests.get("https://purrbot.site/api/img/nsfw/neko/gif").json()
-        src = req["link"]
+        src = self.purrbotApi(desc, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
@@ -294,4 +292,14 @@ class Loveplay(commands.Cog):
         req = requests.get("https://purrbot.site/api/img/nsfw/solo_male/gif").json()
         src = req["link"]
         e = await self.buildEmbed(ctx, desc, src, user)
-        await ctx.send(embed=e)
+        await ctx.send(embed=e)        
+
+    @commands.command(name="hneko")
+    @commands.is_nsfw()
+    async def lpsolom(self, ctx, *, user):
+        """Send a hentai neko"""
+        desc = "hneko"
+        req = requests.get("https://purrbot.site/api/img/nsfw/neko/gif").json()
+        src = req["link"]
+        e = await self.buildEmbed(ctx, desc, src, user)
+        await ctx.send(embed=e)        
